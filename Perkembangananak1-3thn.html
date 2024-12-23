@@ -183,23 +183,36 @@
 </div>
 
 <script>
-    // Fungsi untuk memuat status checklist dari LocalStorage
+    // Fungsi untuk memuat status checklist dan informasi anak dari LocalStorage
     window.onload = function() {
+        // Memuat status checklist
         for (let i = 1; i <= 33; i++) {
             let checkbox = document.getElementById('check' + i);
             if (localStorage.getItem('check' + i) === 'true') {
                 checkbox.checked = true;
             }
         }
+
+        // Memuat informasi anak dari LocalStorage
+        document.getElementById('childName').value = localStorage.getItem('childName') || '';
+        document.getElementById('childOrder').value = localStorage.getItem('childOrder') || '';
+        document.getElementById('parentNames').value = localStorage.getItem('parentNames') || '';
     }
 
-    // Fungsi untuk menyimpan status checklist ke LocalStorage
+    // Fungsi untuk menyimpan status checklist dan informasi anak ke LocalStorage
     function saveChecklist() {
+        // Menyimpan status checklist
         for (let i = 1; i <= 33; i++) {
             let checkbox = document.getElementById('check' + i);
             localStorage.setItem('check' + i, checkbox.checked);
         }
-        alert("Checklist telah disimpan!");
+
+        // Menyimpan informasi anak
+        localStorage.setItem('childName', document.getElementById('childName').value);
+        localStorage.setItem('childOrder', document.getElementById('childOrder').value);
+        localStorage.setItem('parentNames', document.getElementById('parentNames').value);
+
+        alert("Checklist dan informasi anak telah disimpan!");
     }
 </script>
 
